@@ -134,6 +134,7 @@ input, textarea, select{font-size:12px; font-family:Georgia,"Times New Roman",Ti
 #container #content #posts ul li article figure figcaption{display:block; float:right; width:410px;}
 #container #content #posts ul li article figure h2{font-size:14px;}
 #container #content #posts ul li article figure footer{}
+.clear{ margin-left: 20px; }
 
 /* ------Right Column-----*/
 
