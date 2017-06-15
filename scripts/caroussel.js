@@ -33,14 +33,52 @@ var request = $.ajax({
 request.done(function(data){ //donnees renvoyés par serveur
 	var content ="";
 	data.forEach(function(element){
-		content +='<li><a href="#">'+element.name+'</a></li>' // dans les donnees renvoyées on demande le name uniquement
+		content +='<li id="Mike-"+element.id><a href="#">'+element.name+'</a></li>' // dans les donnees renvoyées on demande le name uniquement
 
-	});
+		});
 	
 	$("#right_column ul").html(content); // dans html <aside id='right_column ul'>
+
+//----------------------------------DEBUT CODE-----------/	
+	$("#right_column ul > li").click(function(e){
+		e.preventDefault();
+
+		// recuperation de notre id
+		var idUser = $(this).attr("id");
+		console.log(idUser.split("-")); // split = couper chaine de caractère pour avoir 1/2...
+		idUser = idUser.split("-");
+
+		// requete ajax
+		var ficheUser = $.ajax({
+					url: "http://jsonplaceholder.typicode.com/users",
+					method: "GET",
+					data: {id: idUser[1] },
+					dataType: "json"
+		});
+
+		ficheUser.done(function(dataUser){
+			console.info(dataUser[0].username+" "+dataUser[0].email);
+
+		});
+
+	});
+
+	/*******************END NEWS********************/
 
 });
 
 request.fail(function(jqXHR, textStatus){
 	alert("Request failed: " + textStatus)
 });
+
+
+
+
+
+
+
+
+
+
+
+
